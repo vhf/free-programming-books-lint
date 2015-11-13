@@ -1,10 +1,5 @@
-'use strict';
-
-var _ = require('lodash');
 var visit = require('unist-util-visit');
 var position = require('mdast-util-position');
-
-var start = position.start;
 
 function hasLink(item) {
   return item.children.length &&
@@ -16,34 +11,40 @@ function hasLink(item) {
 function itemLink(ast, file, preferred, done) {
   var contents = file.toString();
 
-  visit(ast, 'list', function (node) {
+  visit(ast, 'list', function(node) {
     var items = node.children;
+    var author;
+    var pdf;
+    var restStart;
+    var restEnd;
+    var lineStart;
+    var lineEnd;
+    var line;
+    var rest;
 
     if (node.ordered) {
       return;
     }
 
-    items.forEach(function (item) {
+    items.forEach(function(item) {
       if (hasLink(item)) {
-        var lineStart = item.children[0].children[0].position.start.offset;
-        var lineEnd = item.children[0].children[item.children[0].children.length - 1].position.end.offset;
-        var line = contents.slice(lineStart, lineEnd);
+        lineStart = item.children[0].children[0].position.start.offset;
+        lineEnd = item.children[0].children[item.children[0].children.length - 1].position.end.offset;
+        line = contents.slice(lineStart, lineEnd);
+        rest = null;
 
-        var rest = null;
         if (item.children[0].children.length > 1) {
-          var restStart = item.children[0].children[1].position.start.offset;
-          var restEnd = item.children[0].children[item.children[0].children.length - 1].position.end.offset;
+          restStart = item.children[0].children[1].position.start.offset;
+          restEnd = item.children[0].children[item.children[0].children.length - 1].position.end.offset;
           rest = contents.slice(restStart, restEnd);
         }
-
-        var author;
-        var pdf;
 
         if (position.generated(item)) {
           return;
         }
 
-        if (author = /- ([^\(\n]+){0,1}/gm.exec(rest)) {
+        author = /- ([^\(\n]+){0,1}/gm.exec(rest);
+        if (author) {
           if (author.index < 1) {
             file.warn('Missing a space before author', item);
           } else if (author.index !== 1 && author[1][author[1].length - 1] !== ')') {
@@ -51,7 +52,8 @@ function itemLink(ast, file, preferred, done) {
           }
         }
 
-        if (pdf = /(\.pdf)/gmi.exec(line)) {
+        pdf = /(\.pdf)/gmi.exec(line);
+        if (pdf) {
           if (!rest || (pdf.length > 1 && !/PDF/gm.test(rest))) {
             file.warn('Missing PDF indication', item);
           }

@@ -2,6 +2,10 @@
   "extends": "airbnb",
   "parser": "babel-eslint",
   "env": {
-    "node": true,
+    "node": true
+  },
+  "rules": {
+    "no-var": 0,
+    "func-names": 0
   }
 }

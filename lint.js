@@ -64,26 +64,15 @@ var processor = mdast().use(lint, {
   external: [rules],
 });
 
-exec(`find "/Users/victor/repositories/free-programming-books" -name "*.md" | egrep -v '(README|CONTRIBUTING|CODE)'`, function (error, stdout, stderr) {
+exec(`find "../free-programming-books" -name "*.md" | egrep -v '(README|CONTRIBUTING|CODE)'`, function(error, stdout) {
   var filenames = _.compact(stdout.split('\n'));
-  _.each(filenames, function (filename) {
+  _.each(filenames, function(filename) {
     var doc = fs.readFileSync(filename) + '';
-    processor.process(doc, function (err, file, res) {
+    processor.process(doc, function(err, file) {
       if (err) throw err;
       if (file.messages.length) {
         console.log(filename, file.messages);
-        if (filename !== '/Users/victor/repositories/free-programming-books/free-programming-books.md' &&
-          filename !== '/Users/victor/repositories/free-programming-books/javascript-frameworks-resources.md')
-          throw Error('(' + file.messages.length + ') ' + filename);
       }
     });
   });
 });
-
-// var doc = fs.readFileSync('./test.md') + '';
-// processor.process(doc, function (err, file, res) {
-//   if (err) throw err;
-//   if (file.messages.length) {
-//     console.log(file.messages);
-//   }
-// });
