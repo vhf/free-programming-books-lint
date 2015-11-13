@@ -1,9 +1,9 @@
 var fs = require('fs');
-var _ = require('lodash');
-var exec = require('child_process').exec;
 var mdast = require('mdast');
 var lint = require('mdast-lint');
 var rules = require('./rules');
+var path = require('path');
+
 var processor = mdast().use(lint, {
   'blockquote-indentation': false,
   'checkbox-character-style': false,
@@ -64,15 +64,30 @@ var processor = mdast().use(lint, {
   external: [rules],
 });
 
-exec(`find "../free-programming-books" -name "*.md" | egrep -v '(README|CONTRIBUTING|CODE)'`, function(error, stdout) {
-  var filenames = _.compact(stdout.split('\n'));
-  _.each(filenames, function(filename) {
-    var doc = fs.readFileSync(filename) + '';
-    processor.process(doc, function(err, file) {
-      if (err) throw err;
-      if (file.messages.length) {
-        console.log(filename, file.messages);
-      }
-    });
+var messages = [];
+var dir = '../free-programming-books/';
+var excludes = ['README.md', 'CONTRIBUTING.md', 'CODE_OF_CONDUCT.md'];
+var filenames;
+
+function getFiles(dir) {
+  return fs.readdirSync(dir).filter(function(file) {
+    return path.extname(file) === '.md' && excludes.indexOf(file) === -1;
+  });
+}
+
+filenames = getFiles(dir);
+
+filenames.forEach(function(filename) {
+  var doc = fs.readFileSync(dir + filename) + '';
+  processor.process(doc, function(err, file) {
+    if (err) throw err;
+    if (file.messages.length) {
+      messages.push(filename);
+      messages = messages.concat(file.messages);
+    }
   });
 });
+
+if (messages.length) {
+  console.log(messages);
+}
