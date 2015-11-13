@@ -92,5 +92,7 @@
 
   if (messages.length) {
     console.log(messages);
+    process.exit(1);
   }
+  process.exit(0);
 })(process.argv[2]);
