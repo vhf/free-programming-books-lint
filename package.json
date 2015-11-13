@@ -6,9 +6,10 @@
   "repository": "https://github.com/vhf/free-programming-books-lint",
   "license": "MIT",
   "dependencies": {
-    "unist-util-visit": "^1.0.0",
     "mdast": "^2.1.0",
-    "mdast-lint": "^1.1.0"
+    "mdast-lint": "^1.1.0",
+    "mdast-util-position": "^1.0.0",
+    "unist-util-visit": "^1.0.0"
   },
   "devDependencies": {
     "eslint": "^1.0.0"
