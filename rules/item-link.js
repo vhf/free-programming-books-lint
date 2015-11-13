@@ -56,16 +56,6 @@ function itemLink(ast, file, preferred, done) {
             file.warn('Missing PDF indication', item);
           }
         }
-      } else {
-        if (['podcast', 'screencast'].indexOf(item.children[0].children[0].identifier) === -1) {
-          if (!hasLink(item.children[0])) {
-            if (item.children.length > 1 &&
-                contents.slice(item.children[1].position.start.offset, item.children[1].position.start.offset + 1) === '('
-            ) {
-              file.warn('Invalid link: ] (', item);
-            }
-          }
-        }
       }
     });
   });
