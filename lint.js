@@ -75,7 +75,6 @@
       return path.extname(file) === '.md' && excludes.indexOf(file) === -1;
     });
   }
-  console.log(dir);
 
   filenames = getFiles(dir);
 
