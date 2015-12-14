@@ -3,4 +3,5 @@ module.exports = {
   'item-link': require('./item-link'),
   'blank-lines': require('./blank-lines'),
   'resource-url': require('./resource-url'),
+  'alphabetical-list-items': require('./alphabetical-list-items'),
 };
