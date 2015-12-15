@@ -4,6 +4,14 @@ var strip = require('strip-markdown');
 var mdast = require('mdast').use(strip);
 var franc = require('franc');
 
+function normalize(text) {
+  var removeAtBeginning = /^(\.|\-|\_|\(|《|\"|\')*/;
+  var removeInside = /(,|:)/;
+  var replaceWithSpace = /(-)/;
+  return text.toLowerCase().trim().replace(removeAtBeginning, '')
+             .replace(removeInside, '').replace(replaceWithSpace, ' ');
+}
+
 
 function alphaCheck(ast, file, preferred, done) {
   var contents = file.toString();
@@ -16,15 +24,13 @@ function alphaCheck(ast, file, preferred, done) {
 
     items.forEach(function(item) {
       if (item.children.length) {
-        var lineStart = item.children[0].children[0].position.start.offset;
-        var lineEnd = item.children[0].children[item.children[0].children.length - 1].position.end.offset;
-        var text = mdast.process(contents.slice(lineStart, lineEnd));
+        var lineStartOffset = item.children[0].children[0].position.start.offset;
+        var lineEndOffset = item.children[0].children[item.children[0].children.length - 1].position.end.offset;
+        var text = normalize(mdast.process(contents.slice(lineStartOffset, lineEndOffset)));
         var line = item.position.start.line;
-        var a = lastText.toLowerCase().trim().replace(/^(\.|\-|\_)*/, '');
-        var b = text.toLowerCase().trim().replace(/^(\.|\-|\_)*/, '');
-        var comp = new Intl.Collator(lang).compare(a, b);
+        var comp = new Intl.Collator(lang).compare(lastText, text);
         if (comp > 0) {
-          file.warn('Alphabetical ordering: swap l.' + item.position.start.line + ' and l.' + lastLine + '', node);
+          file.warn('Alphabetical ordering: swap l.' + item.children[0].children[0].position.start.line + ' and l.' + lastLine + '', node);
         }
         lastLine = line;
         lastText = text;
