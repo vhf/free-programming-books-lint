@@ -10,7 +10,7 @@ function isApplicable(node) {
 }
 
 function blankLines(ast, file, preferred, done) {
-  visit(ast, function(node, index, parent) {
+  visit(ast, function (node, index, parent) {
     var next = parent && parent.children[index + 1];
 
     if (position.generated(node)) {

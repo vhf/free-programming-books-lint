@@ -11,7 +11,7 @@ function hasLink(item) {
 function itemLink(ast, file, preferred, done) {
   var contents = file.toString();
 
-  visit(ast, 'list', function(node) {
+  visit(ast, 'list', function (node) {
     var items = node.children;
     var author;
     var pdf;
@@ -26,7 +26,7 @@ function itemLink(ast, file, preferred, done) {
       return;
     }
 
-    items.forEach(function(item) {
+    items.forEach(function (item) {
       if (hasLink(item)) {
         lineStart = item.children[0].children[0].position.start.offset;
         lineEnd = item.children[0].children[item.children[0].children.length - 1].position.end.offset;
