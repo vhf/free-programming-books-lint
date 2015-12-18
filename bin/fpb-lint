@@ -1,4 +1,4 @@
 #!/usr/bin/env node
 
-process.title = 'fpb-lint'
-require('../lint');
+process.title = 'fpb-lint';
+require('../dist/lint');

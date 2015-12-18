@@ -1,13 +1,14 @@
+'use strict';
+
 (function (directory) {
   var fs = require('fs');
   var mdast = require('mdast');
   var lint = require('mdast-lint');
-  var rules = require('./rules');
   var path = require('path');
 
-  var messages = [];
   var excludes = ['README.md', 'CONTRIBUTING.md', 'CODE_OF_CONDUCT.md'];
-  var filenames;
+  var messages = [];
+  var filenames = undefined;
 
   function getLangFromFilename(filename) {
     var dash = filename.lastIndexOf('-');
@@ -77,8 +78,8 @@
       'table-pipe-alignment': false,
       'table-pipes': false,
       'unordered-list-marker-style': '*',
-      'alphabetical-list-items': getLangFromFilename(filename),
-      external: [rules],
+      'mdast-lint-alphabetize-lists': getLangFromFilename(filename),
+      external: ['mdast-lint-alphabetize-lists', 'mdast-lint-blank-lines-1-0-2', 'mdast-lint-books-links', 'mdast-lint-empty-sections', 'mdast-lint-url-trailing-slash']
     };
   }
 

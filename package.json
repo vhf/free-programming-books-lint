@@ -1,21 +1,38 @@
 {
   "name": "free-programming-books-lint",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "description": "Linting tool for vhf/free-programming-books",
   "author": "Victor Felder <victorfelder@gmail.com>",
-  "repository": "https://github.com/vhf/free-programming-books-lint",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vhf/free-programming-books-lint.git"
+  },
   "license": "MIT",
   "dependencies": {
     "mdast": "^2.1.0",
     "mdast-lint": "^1.1.0",
-    "mdast-util-position": "^1.0.0",
-    "strip-markdown": "^0.3.1",
-    "unist-util-visit": "^1.0.0"
+    "mdast-lint-alphabetize-lists": "^0.1.0",
+    "mdast-lint-blank-lines-1-0-2": "^0.1.0",
+    "mdast-lint-books-links": "^0.1.0",
+    "mdast-lint-empty-sections": "^0.1.0",
+    "mdast-lint-url-trailing-slash": "^0.1.0"
   },
   "devDependencies": {
-    "eslint": "^1.0.0"
+    "babel-core": "^6.3.17",
+    "babel-eslint": "^5.0.0-beta6",
+    "babel-preset-es2015": "^6.3.13",
+    "eslint": "^1.10.3",
+    "eslint-config-airbnb": "^2.1.1",
+    "eslint-plugin-react": "^3.11.3"
+  },
+  "scripts": {
+    "build": "babel lib -d dist"
   },
   "bin": {
     "fpb-lint": "./bin/fpb-lint"
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/vhf/free-programming-books-lint/issues"
+  },
+  "homepage": "https://github.com/vhf/free-programming-books-lint#readme"
 }
