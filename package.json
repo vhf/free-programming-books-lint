@@ -1,6 +1,6 @@
 {
   "name": "free-programming-books-lint",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Linting tool for vhf/free-programming-books",
   "author": "Victor Felder <victorfelder@gmail.com>",
   "repository": {
@@ -9,13 +9,13 @@
   },
   "license": "MIT",
   "dependencies": {
-    "mdast": "^2.1.0",
-    "mdast-lint": "^1.1.0",
-    "mdast-lint-alphabetize-lists": "^0.1.0",
-    "mdast-lint-blank-lines-1-0-2": "^0.1.0",
-    "mdast-lint-books-links": "^0.1.0",
-    "mdast-lint-empty-sections": "^0.1.0",
-    "mdast-lint-url-trailing-slash": "^0.1.0"
+    "remark": "^3.0.0",
+    "remark-lint": "^2.0.0",
+    "remark-lint-alphabetize-lists": "^1.0.0",
+    "remark-lint-blank-lines-1-0-2": "^1.0.0",
+    "remark-lint-books-links": "^1.0.0",
+    "remark-lint-no-empty-sections": "^1.0.0",
+    "remark-lint-no-url-trailing-slash": "^1.0.0"
   },
   "devDependencies": {
     "babel-core": "^6.3.17",
