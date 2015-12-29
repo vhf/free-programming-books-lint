@@ -2,8 +2,8 @@
 
 (function (directory) {
   var fs = require('fs');
-  var mdast = require('mdast');
-  var lint = require('mdast-lint');
+  var remark = require('remark');
+  var lint = require('remark-lint');
   var path = require('path');
 
   var excludes = ['README.md', 'CONTRIBUTING.md', 'CODE_OF_CONDUCT.md'];
@@ -38,7 +38,6 @@
       'hard-break-spaces': false,
       'heading-increment': false,
       'heading-style': 'atx',
-      'index': false,
       'link-title-style': false,
       'list-item-bullet-indent': false,
       'list-item-content-indent': false,
@@ -78,8 +77,8 @@
       'table-pipe-alignment': false,
       'table-pipes': false,
       'unordered-list-marker-style': '*',
-      'mdast-lint-alphabetize-lists': getLangFromFilename(filename),
-      external: ['mdast-lint-alphabetize-lists', 'mdast-lint-blank-lines-1-0-2', 'mdast-lint-books-links', 'mdast-lint-empty-sections', 'mdast-lint-url-trailing-slash']
+      'remark-lint-alphabetize-lists': getLangFromFilename(filename),
+      external: ['remark-lint-alphabetize-lists', 'remark-lint-blank-lines-1-0-2', 'remark-lint-books-links', 'remark-lint-no-empty-sections', 'remark-lint-no-url-trailing-slash']
     };
   }
 
@@ -95,7 +94,7 @@
 
   filenames.forEach(function (filename) {
     var doc = fs.readFileSync(filename) + '';
-    var processor = mdast().use(lint, rulesForFile(filename));
+    var processor = remark().use(lint, rulesForFile(filename));
     processor.process(doc, function (err, file) {
       if (err) throw err;
       if (file.messages.length) {
