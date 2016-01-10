@@ -69,6 +69,7 @@
       'no-shortcut-reference-link': false,
       'no-table-indentation': false,
       'no-tabs': true,
+      'no-undefined-references': false,
       'ordered-list-marker-style': false,
       'ordered-list-marker-value': false,
       'rule-style': false,
