@@ -6,9 +6,9 @@
   var lint = require('remark-lint');
   var path = require('path');
 
-  var excludes = ['README.md', 'CONTRIBUTING.md', 'CODE_OF_CONDUCT.md'];
+  var excludes = ['README.md', 'CONTRIBUTING.md', 'CODE_OF_CONDUCT.md', 'SUMMARY.md'];
   var messages = [];
-  var filenames = undefined;
+  var filenames = void 0;
 
   function getLangFromFilename(filename) {
     var dash = filename.lastIndexOf('-');
