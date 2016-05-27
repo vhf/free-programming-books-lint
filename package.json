@@ -1,6 +1,6 @@
 {
   "name": "free-programming-books-lint",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Linting tool for vhf/free-programming-books",
   "author": "Victor Felder <victorfelder@gmail.com>",
   "repository": {
@@ -23,10 +23,13 @@
     "babel-preset-es2015": "^6.3.13",
     "eslint": "^1.10.3",
     "eslint-config-airbnb": "^2.1.1",
-    "eslint-plugin-react": "^3.11.3"
+    "eslint-plugin-react": "^3.11.3",
+    "publish-please": "2.1.3"
   },
   "scripts": {
-    "build": "babel lib -d dist"
+    "build": "babel lib -d dist",
+    "publish-please": "publish-please",
+    "prepublish": "publish-please guard"
   },
   "bin": {
     "fpb-lint": "./bin/fpb-lint"
