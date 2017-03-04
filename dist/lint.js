@@ -1,14 +1,13 @@
 'use strict';
 
-(function (directory) {
-  var fs = require('fs');
-  var remark = require('remark');
-  var lint = require('remark-lint');
-  var path = require('path');
+var fs = require('fs');
+var remark = require('remark');
+var lint = require('remark-lint');
+var path = require('path');
 
+(function (directory) {
   var excludes = ['README.md', 'CONTRIBUTING.md', 'CODE_OF_CONDUCT.md', 'SUMMARY.md'];
   var messages = [];
-  var filenames = void 0;
 
   function getLangFromFilename(filename) {
     var dash = filename.lastIndexOf('-');
@@ -91,10 +90,10 @@
     });
   }
 
-  filenames = getFilesFromDir(path.resolve(directory));
+  var filenames = getFilesFromDir(path.resolve(directory));
 
   filenames.forEach(function (filename) {
-    var doc = fs.readFileSync(filename) + '';
+    var doc = '' + fs.readFileSync(filename);
     var processor = remark().use(lint, rulesForFile(filename));
     processor.process(doc, function (err, file) {
       if (err) throw err;
