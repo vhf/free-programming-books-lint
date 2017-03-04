@@ -5,6 +5,7 @@
     "node": true
   },
   "rules": {
-    "comma-dangle": "off"
+    "comma-dangle": "off",
+    "global-require": "off"
   }
 }
