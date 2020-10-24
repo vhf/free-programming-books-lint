@@ -37,11 +37,10 @@ var commonPreset = {
   filenames.forEach(function (filename) {
     var doc = fs.readFileSync(filename);
     var lang = getLangFromFilename(filename);
-    var preset = commonPreset;
+    var processor = remark().use(commonPreset);
     if (langsToAlphabetize.includes(lang)) {
-      preset.plugins.push([require('remark-lint-alphabetize-lists'), lang]);
+      processor.use(require('remark-lint-alphabetize-lists'), lang);
     }
-    var processor = remark().use(preset);
 
     processor.process(doc, function (err, file) {
       if (report(err || file) !== 'no issues found') {
