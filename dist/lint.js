@@ -28,7 +28,7 @@ function getFilesFromDir(dir) {
 }
 
 var commonPreset = {
-  plugins: [[require('remark-lint')], [require('remark-lint-final-newline'), true], [require('remark-lint-heading-style'), 'atx'], [require('remark-lint-no-duplicate-headings'), true], [require('remark-lint-no-emphasis-as-heading'), true], [require('remark-lint-no-heading-content-indent'), true], [require('remark-lint-no-heading-indent'), true], [require('remark-lint-no-heading-punctuation'), true], [require('remark-lint-no-literal-urls'), true], [require('remark-lint-no-tabs'), true], [require('remark-lint-strong-marker'), 'consistent'], [require('remark-lint-unordered-list-marker-style'), '*'], [require('remark-lint-blank-lines-1-0-2')], [require('remark-lint-books-links')], [require('remark-lint-no-empty-sections')], [require('remark-lint-no-url-trailing-slash')], [require('remark-lint-no-pipes-in-links')]]
+  plugins: [[require('remark-lint')], [require('remark-lint-final-newline'), true], [require('remark-lint-heading-style'), 'atx'], [require('remark-lint-no-duplicate-headings'), true], [require('remark-lint-no-emphasis-as-heading'), true], [require('remark-lint-no-heading-content-indent'), true], [require('remark-lint-no-heading-indent'), true], [require('remark-lint-no-heading-punctuation'), true], [require('remark-lint-no-literal-urls'), true], [require('remark-lint-no-tabs'), true], [require('remark-lint-strong-marker'), 'consistent'], [require('remark-lint-unordered-list-marker-style'), '*'], [require('remark-lint-blank-lines-1-0-2')], [require('remark-lint-books-links')], [require('remark-lint-no-empty-sections')], [require('remark-lint-no-url-trailing-slash')]]
 };
 
 (function (directory) {
