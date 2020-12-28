@@ -1,0 +1,23 @@
+name: free-programming-books-lint
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: '14.x'
+    - run: git clone https://github.com/EbookFoundation/free-programming-books.git fpb
+    - run: cd fpb && git checkout c7471483a48f3a47e5fbcfdb351c5e78216c484f
+    - run: npm ci
+    - run: npm run build
+    - run: ./bin/fpb-lint $(pwd)/fpb/books/
+    - run: ./bin/fpb-lint $(pwd)/fpb/casts/
+    - run: ./bin/fpb-lint $(pwd)/fpb/courses/
+    - run: ./bin/fpb-lint $(pwd)/fpb/more/
