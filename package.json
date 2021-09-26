@@ -9,8 +9,8 @@
   },
   "license": "MIT",
   "dependencies": {
+    "commander": "^8.2.0",
     "remark": "^13.0.0",
-    "remark-cli": "^9.0.0",
     "remark-lint": "^8.0.0",
     "remark-lint-alphabetize-lists": "^3.0.0",
     "remark-lint-blank-lines-1-0-2": "^3.0.0",
