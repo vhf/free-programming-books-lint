@@ -19,7 +19,4 @@ jobs:
     - run: npm run test
     - run: npm run lint
     - run: npm install --global .
-    - run: fpb-lint $(pwd)/fpb/books/
-    - run: fpb-lint $(pwd)/fpb/casts/
-    - run: fpb-lint $(pwd)/fpb/courses/
-    - run: fpb-lint $(pwd)/fpb/more/
+    - run: fpb-lint $(pwd)/fpb/books/ $(pwd)/fpb/casts/ $(pwd)/fpb/courses/ $(pwd)/fpb/more/
