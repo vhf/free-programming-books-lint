@@ -1,6 +1,6 @@
 {
   "name": "free-programming-books-lint",
-  "version": "4.0.0",
+  "version": "4.0.1",
   "description": "Linting tool for vhf/free-programming-books",
   "author": "Victor Felder <victorfelder@gmail.com>",
   "repository": {
