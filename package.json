@@ -11,6 +11,7 @@
   "dependencies": {
     "commander": "^8.2.0",
     "remark": "^13.0.0",
+    "remark-cli": "^9.0.0",
     "remark-lint": "^8.0.0",
     "remark-lint-alphabetize-lists": "^3.0.0",
     "remark-lint-blank-lines-1-0-2": "^3.0.0",
@@ -41,7 +42,7 @@
     "lint": "eslint ."
   },
   "bin": {
-    "fpb-lint": "./cli.js"
+    "fpb-lint": "cli.js"
   },
   "bugs": {
     "url": "https://github.com/vhf/free-programming-books-lint/issues"
